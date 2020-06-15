@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "810155320386",
+    "firebase_url": "https://giveapp-eec96.firebaseio.com",
+    "project_id": "giveapp-eec96",
+    "storage_bucket": "giveapp-eec96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810155320386:android:ed11e1196c40bd828d39db",
+        "android_client_info": {
+          "package_name": "com.example.giveapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810155320386-462kpej2nj337p14p61u27bofli4g1rp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.giveapp",
+            "certificate_hash": "a9ff063e40fb8a13f1e1e92a85a94be1fb995758"
+          }
+        },
+        {
+          "client_id": "810155320386-251bu328a6occ7arprj39afe6p842m7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2oX5j4irV-BC2qYZnH50__Kwzf3IsrIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810155320386-251bu328a6occ7arprj39afe6p842m7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
