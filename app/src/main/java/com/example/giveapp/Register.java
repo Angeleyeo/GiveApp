@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,7 +34,6 @@ public class Register extends AppCompatActivity {
     TextView mLoginLink;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
-
     FirebaseFirestore fStore;
     String userID;
 
@@ -45,7 +43,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mFullName = findViewById(R.id.PersonName);
-        mEmail = findViewById(R.id.Email);
+        mEmail = findViewById(R.id.profileName);
         mPassword = findViewById(R.id.Password);
         mRegisterBtn = findViewById(R.id.RegisterBtn);
         mLoginLink = findViewById(R.id.LoginLink);
