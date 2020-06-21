@@ -34,7 +34,6 @@ public class iCU_main extends AppCompatActivity {
        db.collection("challenges").add(man);
  */
 
-// do image link in firestore - y keep crashin???? logcat errer
 
         mUncompleted = findViewById(R.id.uncompletedchallenges);
         mFriends = findViewById(R.id.challengefriends);
@@ -49,9 +48,4 @@ public class iCU_main extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-       // getMenuInflater().inflate(R.menu.icu_main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 }

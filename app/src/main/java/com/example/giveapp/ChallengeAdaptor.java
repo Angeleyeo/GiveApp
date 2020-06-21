@@ -58,9 +58,9 @@ public class ChallengeAdaptor extends RecyclerView.Adapter<ChallengeAdaptor.Prod
 
         @Override
         public void onClick(View v) {
-            //Challenge challenge = challengeList.get(getAbsoluteAdapterPosition());
+            Challenge challenge = challengeList.get(getAbsoluteAdapterPosition());
             Intent intent = new Intent(mCtx, iCU_challenge_details.class);
-            //intent.putExtra("challenge", challenge);
+            intent.putExtra("challenge", challenge);
             mCtx.startActivity(intent);
         }
     }
