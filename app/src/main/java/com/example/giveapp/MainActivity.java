@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
-    Button verifyBtn;
+    Button verifyBtn, icuBtn, rfoBtn, mtBtn;
     FirebaseUser user;
     ImageView profileImage;
     ImageButton editProfileBtn;
@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        icuBtn = findViewById(R.id.icuBtn);
+        rfoBtn = findViewById(R.id.rfoBtn);
+        mtBtn = findViewById(R.id.mealThrillsBtn);
         email = findViewById(R.id.emaillAdd);
         fullName = findViewById(R.id.ProfileName);
         verifyBtn = findViewById(R.id.verifyBtn);
@@ -116,11 +120,25 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("Name", fullName.getText().toString());
                 i.putExtra("Email", email.getText().toString());
                 startActivity(i);
-
-                //startActivity(new Intent(MainActivity.this, User_profile.class));
             }
         });
 
+
+        icuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), iCU_main.class);
+                startActivity(i);
+            }
+        });
+
+        rfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), rfo_stepcounter.class);
+                startActivity(i);
+            }
+        });
 
     }
 }
