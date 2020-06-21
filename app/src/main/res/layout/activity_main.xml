@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/mealThrillsBtn"
+        android:id="@+id/button4"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="40dp"
@@ -21,10 +21,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icuBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <Button
-        android:id="@+id/icuBtn"
+        android:id="@+id/button3"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="40dp"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rfoBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <TextView
         android:id="@+id/textView4"
@@ -211,7 +211,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/rfoBtn"
+        android:id="@+id/button2"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="40dp"
