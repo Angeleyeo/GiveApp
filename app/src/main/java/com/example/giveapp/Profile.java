@@ -36,7 +36,7 @@ public class Profile extends AppCompatActivity {
     ImageView profileImageView;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
-    Button SaveBtn;
+    Button SaveBtn, LogoutBtn;
     FirebaseUser user;
     StorageReference storageReference;
 
@@ -67,6 +67,7 @@ public class Profile extends AppCompatActivity {
         profileEmail = findViewById(R.id.Email);
         profileImageView = findViewById(R.id.imageView);
         SaveBtn = findViewById(R.id.saveBtn);
+        LogoutBtn = findViewById(R.id.LogoutBtn);
 
         profileName.setText(name);
         profileEmail.setText(email);
@@ -115,6 +116,15 @@ public class Profile extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        LogoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fAuth.signOut();
+                finish();
+                startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
 
