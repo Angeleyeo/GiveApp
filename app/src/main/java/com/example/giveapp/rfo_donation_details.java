@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -151,7 +152,7 @@ public class rfo_donation_details extends AppCompatActivity {
                                 }
                             });
 
-
+                    Toast.makeText(rfo_donation_details.this, "Donation Successful", Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(rfo_donation_details.this, rfo_stepcounter.class));
                 }
