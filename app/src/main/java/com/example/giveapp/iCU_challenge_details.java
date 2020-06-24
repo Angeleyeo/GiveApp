@@ -39,7 +39,7 @@ public class iCU_challenge_details extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         challenges = db.collection("challenges");
 
-        btnSend = (FloatingActionButton)findViewById(R.id.btnSend);
+        btnSend = (FloatingActionButton)findViewById(R.id.donateBtn);
 
         longDesc = findViewById(R.id.longDesc);
         challenge_name = findViewById(R.id.challenge_name);

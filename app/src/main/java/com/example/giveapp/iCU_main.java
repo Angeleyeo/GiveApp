@@ -23,15 +23,15 @@ public class iCU_main extends AppCompatActivity {
         setContentView(R.layout.activity_i_c_u_main);
 
 
-  /*       Challenge man = new Challenge("DOG SELFIE CHALLENGE", "say woof!", "", "");
-       Challenge bfc = new Challenge("BARE FACED CHALLENGE", "flaunt that no-makeup beauty!", "", "");
+  /*      Challenge man = new Challenge("BOTTLE CAP CHALLENGE 2", "byebye mozzies", "", "");
+        Challenge bfc = new Challenge("BARE FACED CHALLENGE", "flaunt that no-makeup beauty!", "", "");
         Challenge mov = new Challenge("MOVEMBER", "mucho mustache ~", "", "");
         Challenge iott = new Challenge("#itsoktotalk", "it's okay.", "", "");
 
         db.collection("challenges").add(iott);
         db.collection("challenges").add(dsc);
         db.collection("challenges").add(bfc);
-       db.collection("challenges").add(man);
+      db.collection("challenges").add(man);
  */
 
 
