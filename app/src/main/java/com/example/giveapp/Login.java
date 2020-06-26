@@ -129,6 +129,19 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    public class UserInfo{
+        String uid, name, email, profileUrl;
+
+        public UserInfo(String uid, String name, String email, String profileUrl, String coverUrl, String userToken) {
+            this.uid = uid;
+            this.name = name;
+            this.email = email;
+            this.profileUrl = profileUrl;
+        }
+
+
+    }
+
 
 
 }

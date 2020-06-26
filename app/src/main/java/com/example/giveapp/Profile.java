@@ -161,4 +161,16 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
+
+    public static class PerformAction {
+        String operationType, userId, profileid;
+
+        public PerformAction(String operationType, String userId, String profileid) {
+            this.operationType = operationType;
+            this.userId = userId;
+            this.profileid = profileid;
+        }
+    }
+
+
 }

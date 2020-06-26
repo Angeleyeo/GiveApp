@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
         rfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), rfo_stepcounter.class);
-                startActivity(i);
+                //Intent i = new Intent(v.getContext(), rfo_stepcounter.class);
+                //startActivity(i);
             }
         });
 
