@@ -3,15 +3,12 @@ package com.example.giveapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,10 +22,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import javax.annotation.Nullable;
@@ -40,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
     String userID;
     Button verifyBtn, icuBtn, rfoBtn, mtBtn;
     FirebaseUser user;
-    ImageView profileImage;
-    ImageButton editProfileBtn;
+    ImageView profileImage, editProfileBtn, findFriends;
     StorageReference storageReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         verifyMsg = findViewById(R.id.verifyMsg);
         profileImage = findViewById(R.id.profilePic);
         editProfileBtn = findViewById(R.id.editProfileBtn);
+        findFriends = findViewById(R.id.findFriendsIV);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -135,8 +131,15 @@ public class MainActivity extends AppCompatActivity {
         rfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), rfo_stepcounter.class);
-                startActivity(i);
+                //Intent i = new Intent(v.getContext(), rfo_stepcounter.class);
+                //startActivity(i);
+            }
+        });
+
+        findFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SearchFriends.class));
             }
         });
 
@@ -149,4 +152,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

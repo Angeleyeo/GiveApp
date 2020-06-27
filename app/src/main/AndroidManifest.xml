@@ -19,6 +19,7 @@
         <activity android:name=".rfo_donation_details" />
         <activity android:name=".rfo_donate" />
         <activity android:name=".rfo_stepcounter" />
+        <activity android:name=".SearchFriends"></activity>
         <activity android:name=".iCU_challenge_details" />
         <activity android:name=".iCU_completed" />
         <activity android:name=".iCU_challenges" />
