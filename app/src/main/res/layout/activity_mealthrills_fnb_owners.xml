@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D4D5DC"
-    tools:context=".iCU_main">
+    tools:context=".mealthrills_fnbOwners">
 
     <TextView
-        android:id="@+id/ichallengeu"
+        android:id="@+id/mealthrills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="i challenge u!"
+        android:text="meal thrills"
         android:textSize="53sp"
-        android:gravity="center"
         app:fontFamily="@font/serenity_script"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,44 +22,44 @@
         app:layout_constraintVertical_bias="0.047" />
 
     <Button
-        android:id="@+id/uncompletedchallenges"
+        android:id="@+id/addNewPostBtn"
         android:layout_width="350dp"
         android:layout_height="150dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_button"
-        android:text="Uncompleted Challenges"
+        android:text="POST NEW FOOD ITEM"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ichallengeu" />
+        app:layout_constraintTop_toBottomOf="@+id/mealthrills" />
 
     <Button
-        android:id="@+id/challengefriends"
+        android:id="@+id/itemsReservedBtn"
         android:layout_width="350dp"
         android:layout_height="150dp"
         android:layout_marginTop="52dp"
         android:background="@drawable/rounded_button"
-        android:text="CHALLENGE YOUR FRIENDS"
+        android:text="ITEMS RESERVED BY USERS"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uncompletedchallenges" />
+        app:layout_constraintTop_toBottomOf="@+id/addNewPostBtn" />
 
     <Button
-        android:id="@+id/completedchallenges"
+        android:id="@+id/marketplace"
         android:layout_width="350dp"
         android:layout_height="150dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/rounded_button"
-        android:text="COMPLETED CHALLENGES"
+        android:text="MARKETPLACE"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/challengefriends"
+        app:layout_constraintTop_toBottomOf="@+id/itemsReservedBtn"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

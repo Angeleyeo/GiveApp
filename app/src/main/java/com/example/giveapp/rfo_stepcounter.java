@@ -25,7 +25,7 @@ public class rfo_stepcounter extends AppCompatActivity {
     private double magnitudePrev = 0;
     private int count = 0;
 
-    Button donateBtn;
+    Button donateBtn, homeBtn;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -72,6 +72,16 @@ public class rfo_stepcounter extends AppCompatActivity {
                 startActivity(new Intent(rfo_stepcounter.this, rfo_donate.class));
             }
         });
+
+        homeBtn = findViewById(R.id.homeBtn);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(rfo_stepcounter.this, MainActivity.class));
+            }
+        });
+
+
 
 /*        Beneficiary test = new Beneficiary("TESTING", "", "", 0);
 Beneficiary ccf = new Beneficiary("TESTING", "", "", 0);

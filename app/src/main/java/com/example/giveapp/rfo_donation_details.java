@@ -154,7 +154,10 @@ public class rfo_donation_details extends AppCompatActivity {
 
                     Toast.makeText(rfo_donation_details.this, "Donation Successful", Toast.LENGTH_SHORT).show();
 
+                    myDialog.dismiss();
+
                     startActivity(new Intent(rfo_donation_details.this, rfo_stepcounter.class));
+                    finish();
                 }
             }
         });

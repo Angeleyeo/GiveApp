@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class iCU_main extends AppCompatActivity {
 
     Button mUncompleted, mFriends, mCompleted;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+//    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

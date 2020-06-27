@@ -140,5 +140,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mtBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), mealthrills_fnbOwners.class);
+                startActivity(i);
+            }
+        });
+
     }
 }

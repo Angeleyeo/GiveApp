@@ -3,6 +3,7 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/amatica_sc_bold</item>
         <item>@font/comfortaa_bold</item>
+        <item>@font/delius</item>
         <item>@font/roboto</item>
         <item>@font/roboto_black</item>
         <item>@font/roboto_medium</item>

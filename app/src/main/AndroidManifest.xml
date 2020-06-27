@@ -3,6 +3,8 @@
     package="com.example.giveapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".mealthrills_fnb_post"></activity>
+        <activity android:name=".mealthrills_fnbOwners" />
         <activity android:name=".rfo_donation_details" />
         <activity android:name=".rfo_donate" />
         <activity android:name=".rfo_stepcounter" />
@@ -21,6 +25,8 @@
         <activity android:name=".iCU_uncompleted" />
         <activity android:name=".iCU_main" />
         <activity android:name=".Profile" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".Login" />
         <activity android:name=".Register">
             <intent-filter>
