@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D4D5DC"
+    android:background="#FFFFFF"
     tools:context=".iCU_challenges">
 
     <androidx.recyclerview.widget.RecyclerView

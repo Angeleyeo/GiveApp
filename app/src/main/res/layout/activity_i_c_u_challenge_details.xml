@@ -80,36 +80,30 @@
                 android:layout_height="wrap_content"
                 app:cardUseCompatPadding="true"
                 >
-                
-                <LinearLayout
-                    android:orientation="vertical"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    >
+                    android:background="#B97E7E">
 
                     <TextView
                         android:id="@+id/challenge_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="190dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/amatica_sc_bold"
+                        android:layout_marginStart="3dp"
+                        android:fontFamily="@font/roboto_black"
                         android:padding="12dp"
                         android:text="Challenge Name"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
-                    
-                    <LinearLayout
-                        android:id="@+id/layout_price"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    </LinearLayout>
 
-                    
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
                 
             </androidx.cardview.widget.CardView>
 
@@ -124,11 +118,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:fontFamily="casual"
                     android:lineSpacingMultiplier="1.5"
                     android:padding="12dp"
                     android:text="Description"
-                    android:textColor="@android:color/black"
+                    android:textColor="#000000"
                     android:textSize="14sp" />
 
             </androidx.cardview.widget.CardView>

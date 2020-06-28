@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.060000002" />
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <TextView
         android:id="@+id/textView2"
@@ -72,10 +72,11 @@
 
     <Button
         android:id="@+id/LoginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="161dp"
+        android:layout_height="63dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/textview_border"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#BC9091"
         android:padding="10dp"
         android:text="@string/login"
         android:textColor="#FFFFFF"

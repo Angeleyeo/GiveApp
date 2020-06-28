@@ -13,6 +13,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,7 +26,8 @@ public class rfo_stepcounter extends AppCompatActivity {
     private double magnitudePrev = 0;
     private int count = 0;
 
-    Button donateBtn, homeBtn;
+    Button donateBtn;
+    ImageButton homeBtn;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
