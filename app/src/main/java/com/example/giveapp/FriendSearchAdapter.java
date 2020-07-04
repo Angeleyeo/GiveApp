@@ -67,8 +67,8 @@ public class FriendSearchAdapter extends RecyclerView.Adapter<FriendSearchAdapte
         @Override
         public void onClick(View v) {
             Users user = userList.get(getAbsoluteAdapterPosition());
-            Intent intent = new Intent(mCtx, SearchFriends.class);
-//            intent.putExtra("user", user);
+            Intent intent = new Intent(mCtx, SearchFriends_details.class);
+            intent.putExtra("user", user);
             mCtx.startActivity(intent);
         }
     }

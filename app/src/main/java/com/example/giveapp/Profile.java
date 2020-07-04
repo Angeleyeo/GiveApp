@@ -111,6 +111,7 @@ public class Profile extends AppCompatActivity {
                         edited.put("email", email);
                         edited.put("fName", name);
                         edited.put("imageUrl", downloadUri.toString());
+                        edited.put("id", user.getUid()); // added
 
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

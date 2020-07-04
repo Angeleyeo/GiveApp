@@ -2,12 +2,16 @@ package com.example.giveapp;
 
 import com.google.firebase.firestore.Exclude;
 
-public class Users {
+import java.io.Serializable;
+
+public class Users implements Serializable {
     public String fName;
     public String imageUrl;
     public String email;
-    @Exclude
-    private String id;
+
+    public String id; // added
+
+//    @Exclude private String id;
 
     public String getName() {
         return fName;
@@ -45,11 +49,12 @@ public class Users {
     public Users() {
     }
 
-    public Users(String fName, String email, String imageUrl) {
+    public Users(String fName, String email, String imageUrl, String id) { // added
 
         this.fName = fName;
         this.email = email;
         this.imageUrl = imageUrl;
+        this.id = id;
 
     }
 

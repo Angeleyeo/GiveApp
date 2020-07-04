@@ -125,7 +125,7 @@ public class SearchFriends extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
                 Query query = new com.algolia.search.saas.Query(s.toString())
-                        .setAttributesToRetrieve("fName", "email", "imageUrl")
+                        .setAttributesToRetrieve("fName", "email", "imageUrl", "id")
                         .setHitsPerPage(50);
 
                 index.searchAsync(query, new CompletionHandler() {
@@ -142,12 +142,15 @@ public class SearchFriends extends AppCompatActivity {
                                 String fName = jsObj.getString("fName");
                                 String email = jsObj.getString("email");
                                 String imageUrl = jsObj.getString("imageUrl");
-                                Users u = new Users(fName, email, imageUrl);
+
+                                String id = jsObj.getString("id"); // added
+
+                                Users u = new Users(fName, email, imageUrl, id); // added
                                 userList.add(u);
 
                             }
 
-                            adaptor = new FriendSearchAdapter(getApplicationContext(), userList);
+                            adaptor = new FriendSearchAdapter(SearchFriends.this, userList);
                             recyclerView.setAdapter(adaptor);
 
                         } catch (JSONException ex) {
