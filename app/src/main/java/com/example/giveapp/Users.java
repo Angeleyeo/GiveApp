@@ -42,11 +42,15 @@ public class Users {
     }
 
 
-
     public Users() {
     }
 
+    public Users(String fName, String email, String imageUrl) {
 
+        this.fName = fName;
+        this.email = email;
+        this.imageUrl = imageUrl;
 
+    }
 
 }

@@ -28,14 +28,15 @@
         app:layout_constraintStart_toStartOf="@+id/friendsRecyclerView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SearchView
+    <EditText
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="54dp"
         android:autofillHints="Search..."
+        android:hint="search users..."
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

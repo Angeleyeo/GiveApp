@@ -2,12 +2,10 @@ package com.example.giveapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -17,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.algolia.search.saas.Client;
+import com.algolia.search.saas.Index;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,12 +28,18 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Profile extends AppCompatActivity {
 
     public static final String TAG = "TAG";
+
     EditText profileName, profileEmail;
     ImageView profileImageView;
     FirebaseAuth fAuth;
@@ -41,10 +47,11 @@ public class Profile extends AppCompatActivity {
     Button SaveBtn, LogoutBtn;
     FirebaseUser user;
     StorageReference storageReference;
-
+    Uri downloadUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
@@ -62,6 +69,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).into(profileImageView);
+                downloadUri = uri;
             }
         });
 
@@ -75,7 +83,6 @@ public class Profile extends AppCompatActivity {
         profileEmail.setText(email);
         Log.d(TAG, "onCreate: " + name + " " + email);
 
-
         profileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,23 +91,27 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-
-
         SaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (profileName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty()) {
+
+                if (profileName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() || downloadUri == null) {
                     Toast.makeText(Profile.this, "One or Many Fields Are Empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 final String email = profileEmail.getText().toString();
+                final String name = profileName.getText().toString();
+
                 user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         DocumentReference docRef = fStore.collection("users").document(user.getUid());
                         Map<String, Object> edited = new HashMap<>();
                         edited.put("email", email);
-                        edited.put("fName", profileName.getText().toString());
+                        edited.put("fName", name);
+                        edited.put("imageUrl", downloadUri.toString());
+
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -109,7 +120,25 @@ public class Profile extends AppCompatActivity {
                                 finish();
                             }
                         });
-                        Toast.makeText(Profile.this, "Email Changed", Toast.LENGTH_SHORT).show();
+
+                        // search code
+
+                        Client client = new Client("A5FO78D1EG", "006b477cd838e6297ad7a265a88aef92");
+                        Index index = client.getIndex("user_search");
+
+
+                        List<JSONObject> array = new ArrayList<>();
+
+                        Map<String, Object> js = new HashMap<>(edited);
+                        js.put("objectID", user.getUid());
+                        array.add(new JSONObject(js));
+
+
+                        index.saveObjectsAsync(new JSONArray(array), null);
+
+                        //
+
+                        Toast.makeText(Profile.this, "User Settings Updated", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -117,7 +146,6 @@ public class Profile extends AppCompatActivity {
                         Toast.makeText(Profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
         });
 
@@ -129,7 +157,6 @@ public class Profile extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
-
     }
 
     protected void onActivityResult(int requestCode, int resultCode, @androidx.annotation.Nullable Intent data) {
@@ -137,7 +164,6 @@ public class Profile extends AppCompatActivity {
         if (requestCode == 1000) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri imageUri = data.getData();
-
                 uploadImageToFirebase(imageUri);
             }
         }
@@ -152,9 +178,9 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(profileImageView);
+                        downloadUri =uri;
                     }
                 });
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
