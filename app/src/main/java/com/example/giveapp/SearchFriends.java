@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -62,8 +65,10 @@ public class SearchFriends extends AppCompatActivity {
     private FriendSearchAdapter adaptor;
     private ArrayList<Users> userList;
     private FirebaseFirestore db;
+    private ProgressBar progressBar;
 
     private EditText search;
+    private FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
@@ -76,6 +81,8 @@ public class SearchFriends extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         userList = new ArrayList<>();
+
+        progressBar = findViewById(R.id.progressBar2);
 
         recyclerView = (RecyclerView) findViewById(R.id.friendsRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -90,6 +97,8 @@ public class SearchFriends extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
+                        progressBar.setVisibility(View.GONE);
+
                         if(!queryDocumentSnapshots.isEmpty()) {
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
 
@@ -97,8 +106,10 @@ public class SearchFriends extends AppCompatActivity {
                             for(DocumentSnapshot d : list){
                                 Users u = d.toObject(Users.class);
                                 u.setId(d.getId());
-                                userList.add(u);
 
+                                if (!u.getId().equals(fUser.getUid())) {
+                                    userList.add(u);
+                                }
                             }
                             adaptor.notifyDataSetChanged();
                         }
@@ -146,8 +157,10 @@ public class SearchFriends extends AppCompatActivity {
                                 String id = jsObj.getString("id"); // added
 
                                 Users u = new Users(fName, email, imageUrl, id); // added
-                                userList.add(u);
 
+                                if (!id.equals(fUser.getUid())) {
+                                    userList.add(u);
+                                }
                             }
 
                             adaptor = new FriendSearchAdapter(SearchFriends.this, userList);

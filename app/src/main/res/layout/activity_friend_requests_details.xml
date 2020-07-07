@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D4D5DC"
-    tools:context=".SearchFriends_details">
+    tools:context=".FriendRequests_details">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/otherUsersImage"
+        android:id="@+id/reqImage"
         android:layout_width="239dp"
         android:layout_height="229dp"
         android:layout_marginLeft="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.243" />
 
     <TextView
-        android:id="@+id/otherUsersName"
+        android:id="@+id/reqName"
         android:layout_width="343dp"
         android:layout_height="65dp"
         android:layout_marginStart="5dp"
@@ -37,11 +37,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otherUsersImage"
+        app:layout_constraintTop_toBottomOf="@+id/reqImage"
         app:layout_constraintVertical_bias="0.061" />
 
     <TextView
-        android:id="@+id/otherUsersEmail"
+        android:id="@+id/reqEmail"
         android:layout_width="346dp"
         android:layout_height="45dp"
         android:layout_marginStart="5dp"
@@ -54,11 +54,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otherUsersName"
+        app:layout_constraintTop_toBottomOf="@+id/reqName"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/otherUsersProfile"
+        android:id="@+id/reqProfile"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="#B97E7E"
@@ -73,15 +73,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:onClick="showPopUp"
-        android:id="@+id/addFriendBtn"
-        android:layout_width="194dp"
-        android:layout_height="65dp"
-        android:text="Add Friend"
+        android:id="@+id/acceptFriendBtn"
+        android:layout_width="161dp"
+        android:layout_height="50dp"
         android:background="@drawable/rounded_button"
+        android:onClick="showAcceptPopUp"
+        android:text="ACCEPT"
+        android:backgroundTint="#BDDCBE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otherUsersEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/reqEmail"
+        app:layout_constraintVertical_bias="0.448" />
+
+    <Button
+        android:id="@+id/rejFriendBtn"
+        android:layout_width="161dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="showRejectPopUp"
+        android:text="REJECT"
+        android:backgroundTint="#F1C0BD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reqEmail"
+        app:layout_constraintVertical_bias="0.448" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

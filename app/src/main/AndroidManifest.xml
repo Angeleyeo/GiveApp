@@ -14,7 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchFriends_details"></activity>
+        <activity android:name=".Friends_details"></activity>
+        <activity android:name=".Friends" />
+        <activity android:name=".FriendRequests_details" />
+        <activity android:name=".FriendRequests" />
+        <activity android:name=".SearchFriends_details" />
         <activity android:name=".mealthrills_fnb_post" />
         <activity android:name=".mealthrills_fnbOwners" />
         <activity android:name=".rfo_donation_details" />

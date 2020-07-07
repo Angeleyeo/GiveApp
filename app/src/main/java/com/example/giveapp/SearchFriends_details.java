@@ -17,6 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -24,6 +29,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -42,10 +50,17 @@ public class SearchFriends_details extends AppCompatActivity {
 
     Dialog myDialog;
 
+    String otherUsersId; // added
+    FirebaseAuth fAuth; // added
+    String currentUserId; //added
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_friends_details);
+
+        fAuth = FirebaseAuth.getInstance(); // added
 
         db = FirebaseFirestore.getInstance();
         users = db.collection("users");
@@ -63,7 +78,11 @@ public class SearchFriends_details extends AppCompatActivity {
         assert user != null;
         getDetail(user);
 
+
+
     }
+
+    // need to clean up - show users excluding current users
 
     private void getDetail(final Users user) {
         users.document(user.getId()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -81,6 +100,7 @@ public class SearchFriends_details extends AppCompatActivity {
                     otherUsersName.setText((String)documentSnapshot.get("fName"));
                     otherUsersEmail.setText((String)documentSnapshot.get("email"));
                     otherUsersProfile.setText((String)documentSnapshot.get("fName"));
+                    otherUsersId = (String) documentSnapshot.get("id");
 
                     Picasso.get().load((String)documentSnapshot.get("imageUrl")).into(otherUsersImage);
 
@@ -101,14 +121,80 @@ public class SearchFriends_details extends AppCompatActivity {
         TextView sendFR = myDialog.findViewById(R.id.sendFR);
         TextView userSent = myDialog.findViewById(R.id.userSent);
         Button sendBtn = myDialog.findViewById(R.id.sendBtn);
+        userSent.setText(otherUsersName.getText());
 
         sendBtn.setEnabled(true);
 
-        sendBtn.setOnClickListener(new View.OnClickListener() {
+        sendBtn.setOnClickListener(new View.OnClickListener() {  // admin!! so there will be collection for new users le
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(SearchFriends_details.this, "Friend Request Sent", Toast.LENGTH_SHORT).show();
+                // friend details
+
+                DocumentReference otherDoc = users.document(otherUsersId);
+                otherDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+
+                            if (document.exists()) {
+
+                                String friendName = (String) document.get("fName");
+                                String friendEmail = (String) document.get("email");
+                                String friendPic = (String) document.get("imageUrl");
+
+                                Users friend = new Users(friendName, friendEmail, friendPic, otherUsersId);
+
+                                // in current user's "sent requests", add the user details of friend
+
+                                users.document(currentUserId).collection("sentRequests").document(otherUsersId).set(friend);
+
+                                Toast.makeText(SearchFriends_details.this, "Friend Request Sent", Toast.LENGTH_SHORT).show();
+
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+
+                // current user details
+
+                currentUserId = fAuth.getCurrentUser().getUid();
+
+                DocumentReference currentDoc = users.document(currentUserId);
+                currentDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+
+                            if (document.exists()) {
+
+                                String myName = (String) document.get("fName");
+                                String myEmail = (String) document.get("email");
+                                String myPic = (String) document.get("imageUrl");
+
+                                Users me = new Users(myName, myEmail, myPic, currentUserId);
+
+                                // in other user's "received requests", add the user details of current user
+
+                                users.document(otherUsersId).collection("receivedRequests").document(currentUserId).set(me);
+
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+
 
                 myDialog.dismiss();
 

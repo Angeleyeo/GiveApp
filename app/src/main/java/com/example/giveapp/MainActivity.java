@@ -1,8 +1,5 @@
 package com.example.giveapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,12 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.algolia.search.saas.Client;
-import com.algolia.search.saas.Index;
-import com.google.android.gms.tasks.OnCompleteListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -26,19 +22,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -46,16 +32,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    TextView fullName, email, verifyMsg;
+    TextView fullName, email, verifyMsg, numFriends;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
-    Button verifyBtn, icuBtn, rfoBtn, mtBtn;
+    Button verifyBtn, icuBtn, rfoBtn, mtBtn, friendReqBtn;
     FirebaseUser user;
     ImageView profileImage, editProfileBtn, findFriends;
     StorageReference storageReference;
 
-    List<JSONObject> usersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.profilePic);
         editProfileBtn = findViewById(R.id.editProfileBtn);
         findFriends = findViewById(R.id.findFriendsIV);
+        friendReqBtn = findViewById(R.id.requests);
+        numFriends = findViewById(R.id.textView10);
+
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -170,7 +158,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        friendReqBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, FriendRequests.class);
+                startActivity(i);
+            }
+        });
 
+        numFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Friends.class);
+                startActivity(i);
+            }
+        });
 
     }
 

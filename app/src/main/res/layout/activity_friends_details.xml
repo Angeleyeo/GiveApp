@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D4D5DC"
-    tools:context=".SearchFriends_details">
+    tools:context=".Friends_details">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/otherUsersImage"
+        android:id="@+id/myFriendsImage"
         android:layout_width="239dp"
         android:layout_height="229dp"
         android:layout_marginLeft="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.243" />
 
     <TextView
-        android:id="@+id/otherUsersName"
+        android:id="@+id/myFriendsName"
         android:layout_width="343dp"
         android:layout_height="65dp"
         android:layout_marginStart="5dp"
@@ -37,11 +37,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otherUsersImage"
+        app:layout_constraintTop_toBottomOf="@+id/myFriendsImage"
         app:layout_constraintVertical_bias="0.061" />
 
     <TextView
-        android:id="@+id/otherUsersEmail"
+        android:id="@+id/myFriendsEmail"
         android:layout_width="346dp"
         android:layout_height="45dp"
         android:layout_marginStart="5dp"
@@ -54,16 +54,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otherUsersName"
+        app:layout_constraintTop_toBottomOf="@+id/myFriendsName"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/otherUsersProfile"
+        android:id="@+id/myFriendsProfile"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="#B97E7E"
         android:gravity="center"
-        android:text="Other User Profile"
+        android:text="My Friend's Profile"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         app:fontFamily="@font/amatica_sc_bold"
@@ -72,16 +72,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:onClick="showPopUp"
-        android:id="@+id/addFriendBtn"
-        android:layout_width="194dp"
-        android:layout_height="65dp"
-        android:text="Add Friend"
-        android:background="@drawable/rounded_button"
+    <TextView
+        android:id="@+id/youAreFriends"
+        android:layout_width="201dp"
+        android:layout_height="49dp"
+        android:text="You are FRIENDS"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otherUsersEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/myFriendsEmail" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

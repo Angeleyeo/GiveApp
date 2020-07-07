@@ -1,7 +1,5 @@
 package com.example.giveapp;
 
-import com.google.firebase.firestore.Exclude;
-
 import java.io.Serializable;
 
 public class Users implements Serializable {
@@ -10,8 +8,6 @@ public class Users implements Serializable {
     public String email;
 
     public String id; // added
-
-//    @Exclude private String id;
 
     public String getName() {
         return fName;
@@ -44,7 +40,6 @@ public class Users implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-
 
     public Users() {
     }
