@@ -10,7 +10,7 @@
         android:id="@+id/userWhoSent"
         android:layout_width="244dp"
         android:layout_height="112dp"
-        android:layout_alignTop="@+id/popuptext"
+        android:layout_alignTop="@+id/acceptFR"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"

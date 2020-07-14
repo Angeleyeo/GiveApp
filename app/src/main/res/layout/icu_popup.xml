@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/userSent"
+        android:id="@+id/cfmText"
         android:layout_width="244dp"
         android:layout_height="112dp"
         android:layout_alignTop="@+id/popuptext"
@@ -20,13 +20,12 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="100dp"
         android:ems="10"
-        android:text="other user's name"
-        android:fontFamily="@font/amatica_sc_bold"
         android:gravity="center"
-        android:textSize="40sp" />
+        android:text="$0.10"
+        android:textSize="35sp" />
 
     <TextView
-        android:id="@+id/sendFR"
+        android:id="@+id/popuptext"
         android:layout_width="215dp"
         android:layout_height="66dp"
         android:layout_alignParentStart="true"
@@ -39,11 +38,11 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="170dp"
         android:gravity="center"
-        android:text="SEND FRIEND REQUEST TO:"
+        android:text="YOU ARE DONATING:"
         android:textSize="22sp" />
 
     <Button
-        android:id="@+id/sendBtn"
+        android:id="@+id/cfmBtn"
         android:layout_width="322dp"
         android:layout_height="59dp"
         android:layout_alignParentStart="true"
@@ -53,8 +52,6 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#BDA2A2"
-        android:text="SEND" />
+        android:text="CONFIRM" />
 
 </RelativeLayout>

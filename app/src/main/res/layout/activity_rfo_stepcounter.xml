@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/numSteps" />
 
     <Button
-        android:id="@+id/donateBtn"
+        android:id="@+id/DoneBtn"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_marginTop="60dp"

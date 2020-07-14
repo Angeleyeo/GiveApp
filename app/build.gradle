@@ -50,5 +50,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
     implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
     implementation 'com.algolia:algoliasearch-android:3.+'
+    implementation 'com.craftman.cardform:cardform:0.0.2'
+    implementation 'com.braintreepayments:card-form:4.3.0'
 
 }

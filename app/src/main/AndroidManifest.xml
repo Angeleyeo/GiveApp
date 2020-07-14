@@ -14,7 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Friends_details"></activity>
+        <activity android:name=".CreditCardList"></activity>
+        <activity android:name=".iCU_donation_details" />
+        <activity android:name=".CreditCard" />
+        <activity android:name=".iCU_donate" />
+        <activity android:name=".iCU_sent_details" />
+        <activity android:name=".iCU_uncompleted_accept_reject" />
+        <activity android:name=".iCU_uncompleted_details" />
+        <activity android:name=".Friends_details" />
         <activity android:name=".Friends" />
         <activity android:name=".FriendRequests_details" />
         <activity android:name=".FriendRequests" />
@@ -26,7 +33,7 @@
         <activity android:name=".rfo_stepcounter" />
         <activity android:name=".SearchFriends" />
         <activity android:name=".iCU_challenge_details" />
-        <activity android:name=".iCU_completed" />
+        <activity android:name=".iCU_sent" />
         <activity android:name=".iCU_challenges" />
         <activity android:name=".iCU_uncompleted" />
         <activity android:name=".iCU_main" />

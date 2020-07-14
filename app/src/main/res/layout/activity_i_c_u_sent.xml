@@ -5,35 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".iCU_uncompleted">
+    tools:context=".iCU_sent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvdChallengesRV"
+        android:id="@+id/sentChallengesRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rcvdChallenges" />
+        app:layout_constraintTop_toBottomOf="@+id/sentChallenges" />
 
     <ProgressBar
-        android:id="@+id/rcProgBar"
+        android:id="@+id/scProgBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/rcvdChallengesRV"
-        app:layout_constraintEnd_toEndOf="@+id/rcvdChallengesRV"
-        app:layout_constraintStart_toStartOf="@+id/rcvdChallengesRV"
+        app:layout_constraintBottom_toBottomOf="@+id/sentChallengesRV"
+        app:layout_constraintEnd_toEndOf="@+id/sentChallengesRV"
+        app:layout_constraintStart_toStartOf="@+id/sentChallengesRV"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/rcvdChallenges"
+        android:id="@+id/sentChallenges"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="#B8C2CA"
         android:gravity="center"
-        android:text="UNCOMPLETED CHALLENGES"
+        android:text="SENT CHALLENGES"
         android:textColor="#000000"
         android:textSize="35sp"
         app:fontFamily="@font/amatica_sc_bold"

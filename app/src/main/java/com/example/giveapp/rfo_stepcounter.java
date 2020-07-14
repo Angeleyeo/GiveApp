@@ -3,7 +3,6 @@ package com.example.giveapp;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -17,8 +16,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Objects;
 
 public class rfo_stepcounter extends AppCompatActivity {
 
@@ -67,7 +64,7 @@ public class rfo_stepcounter extends AppCompatActivity {
 
         sensorManager.registerListener(stepDetector, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-        donateBtn = findViewById(R.id.donateBtn);
+        donateBtn = findViewById(R.id.DoneBtn);
         donateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D4D5DC"
-    tools:context=".rfo_donation_details">
+    tools:context=".iCU_donation_details">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_layout"

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B8C2CA"
+    tools:context=".CreditCard">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/paymentToolbar"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:background="#AFB8BF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cardDeetsWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Card Details"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        app:fontFamily="@font/roboto_black"
+        app:layout_constraintBottom_toBottomOf="@+id/paymentToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="48dp"
+        android:layout_height="39dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/paymentToolbar"
+        app:layout_constraintEnd_toStartOf="@+id/cardDeetsWord"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
+
+    <com.craftman.cardform.CardForm
+        android:id="@+id/card_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="85dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

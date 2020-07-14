@@ -4,17 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class iCU_main extends AppCompatActivity {
 
-    Button mUncompleted, mFriends, mCompleted;
+    Button mUncompleted, mFriends, mSent;
 //    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -37,12 +32,26 @@ public class iCU_main extends AppCompatActivity {
 
         mUncompleted = findViewById(R.id.uncompletedchallenges);
         mFriends = findViewById(R.id.challengefriends);
-        mCompleted = findViewById(R.id.completedchallenges);
+        mSent = findViewById(R.id.sentchallenges);
 
         mFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(iCU_main.this, iCU_challenges.class));
+            }
+        });
+
+        mUncompleted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(iCU_main.this, iCU_uncompleted.class));
+            }
+        });
+
+        mSent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(iCU_main.this, iCU_sent.class));
             }
         });
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="250dp"
+    android:padding="5dp"
+    android:layout_gravity="center">
+
+
+    <TextView
+        android:id="@+id/userSent"
+        android:layout_width="244dp"
+        android:layout_height="112dp"
+        android:layout_alignTop="@+id/sendFR"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="100dp"
+        android:ems="10"
+        android:text="other user's name"
+        android:fontFamily="@font/amatica_sc_bold"
+        android:gravity="center"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/sendFR"
+        android:layout_width="215dp"
+        android:layout_height="66dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="170dp"
+        android:gravity="center"
+        android:text="SEND FRIEND REQUEST TO:"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/sendBtn"
+        android:layout_width="322dp"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#BDA2A2"
+        android:text="SEND" />
+
+</RelativeLayout>

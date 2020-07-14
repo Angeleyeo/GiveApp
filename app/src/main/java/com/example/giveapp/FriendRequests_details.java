@@ -111,7 +111,7 @@ public class FriendRequests_details extends AppCompatActivity {
 
     public void showAcceptPopUp(View v) {
         myDialog = new Dialog(FriendRequests_details.this);
-        myDialog.setContentView(R.layout.activity_friend_requests_acceptpopup);
+        myDialog.setContentView(R.layout.friend_requests_acceptpopup);
         TextView acceptFR = myDialog.findViewById(R.id.acceptFR);
         TextView userWhoSent = myDialog.findViewById(R.id.userWhoSent);
         Button acceptBtn = myDialog.findViewById(R.id.acceptBtn);
@@ -244,7 +244,7 @@ public class FriendRequests_details extends AppCompatActivity {
 
     public void showRejectPopUp(View v) {
         myDialog = new Dialog(FriendRequests_details.this);
-        myDialog.setContentView(R.layout.activity_friend_requests_rejectpopup);
+        myDialog.setContentView(R.layout.friend_requests_rejectpopup);
         TextView rejectFR = myDialog.findViewById(R.id.rejFR);
         TextView userWhoSent = myDialog.findViewById(R.id.userWhoSent);
         Button rejBtn = myDialog.findViewById(R.id.rejBtn);
@@ -254,7 +254,7 @@ public class FriendRequests_details extends AppCompatActivity {
 
         rejBtn.setOnClickListener(new View.OnClickListener() {  // admin!! so there will be collection (friends, rvd, sent all need) for new users le
             @Override
-            public void onClick(View v) { 
+            public void onClick(View v) {
 
                 // friend details
 

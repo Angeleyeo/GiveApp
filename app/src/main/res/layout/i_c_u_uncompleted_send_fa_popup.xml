@@ -7,43 +7,43 @@
 
 
     <TextView
-        android:id="@+id/userWhoSent"
+        android:id="@+id/userToApprove"
         android:layout_width="244dp"
         android:layout_height="112dp"
-        android:layout_alignTop="@+id/popuptext"
+        android:layout_alignTop="@+id/sendForApproval"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="67dp"
         android:ems="10"
-        android:text="other user's name"
         android:fontFamily="@font/amatica_sc_bold"
         android:gravity="center"
+        android:text="other user's name"
         android:textSize="40sp" />
 
     <TextView
-        android:id="@+id/rejFR"
-        android:layout_width="215dp"
-        android:layout_height="66dp"
+        android:id="@+id/sendForApproval"
+        android:layout_width="321dp"
+        android:layout_height="85dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="170dp"
+        android:layout_marginBottom="150dp"
         android:gravity="center"
-        android:text="REJECT FRIEND REQUEST FROM:"
-        android:textSize="20sp" />
+        android:text="SEND FOR COMPLETION APPROVAL TO:"
+        android:textSize="22sp" />
 
     <Button
-        android:id="@+id/rejBtn"
+        android:id="@+id/sendFABtn"
         android:layout_width="322dp"
         android:layout_height="59dp"
         android:layout_alignParentStart="true"
@@ -55,6 +55,6 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#BDA2A2"
-        android:text="Reject" />
+        android:text="SEND" />
 
 </RelativeLayout>

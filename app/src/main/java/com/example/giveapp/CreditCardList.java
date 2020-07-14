@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ProgressBar;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,42 +20,47 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-// should have home btn to iCU_main.
+public class CreditCardList extends AppCompatActivity {
 
-public class iCU_uncompleted extends AppCompatActivity {
+    private static final String TAG = "CreditCardList";
 
-    private static final String TAG = "iCU_uncompleted";
-
+    Button addCardBtn;
     private RecyclerView recyclerView;
-    private RcvdChallengeAdapter adaptor;
-    private List<PassChallenges> rChallengeList;
-    private ProgressBar progressBar;
+    private CreditCardAdapter adaptor;
+    private List<CreditCardDetails> creditCardList;
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
     private FirebaseUser user;
+    PassChallenges rcvdChallenge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_i_c_u_uncompleted);
+        setContentView(R.layout.activity_credit_card_list);
 
-        rChallengeList = new ArrayList<>();
-
-        progressBar = findViewById(R.id.progressBar);
+        addCardBtn = findViewById(R.id.addCardBtn);
 
         db = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
+
         user = fAuth.getCurrentUser();
 
-        recyclerView = (RecyclerView) findViewById(R.id.rcvdChallengesRV);
+        creditCardList = new ArrayList<>();
+
+        recyclerView = (RecyclerView) findViewById(R.id.cardRV);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adaptor = new RcvdChallengeAdapter(this, rChallengeList);
+        if(getIntent() != null) {
+            rcvdChallenge = (PassChallenges) getIntent().getSerializableExtra("rcvdChallenge");
+        }
+        assert rcvdChallenge != null;
+
+        adaptor = new CreditCardAdapter(this, creditCardList, rcvdChallenge);
         recyclerView.setAdapter(adaptor);
 
 
-        db.collection("users").document(user.getUid()).collection("receivedChallenges").get()
+        db.collection("users").document(user.getUid()).collection("creditCards").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -62,15 +70,24 @@ public class iCU_uncompleted extends AppCompatActivity {
 
 
                             for (DocumentSnapshot d : list) {
-                                PassChallenges pc = d.toObject(PassChallenges.class);
-                                pc.setChallengeId(d.getId());
-                                rChallengeList.add(pc);
+                                CreditCardDetails c = d.toObject(CreditCardDetails.class);
+                                c.setId(d.getId());
+                                creditCardList.add(c);
 
                             }
                             adaptor.notifyDataSetChanged();
                         }
                     }
                 });
+
+
+        addCardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CreditCardList.this, CreditCard.class);
+                startActivity(i);
+            }
+        });
     }
 
 }

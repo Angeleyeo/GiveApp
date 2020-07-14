@@ -19,13 +19,13 @@ import java.util.List;
 
 // should have home btn to iCU_main.
 
-public class iCU_uncompleted extends AppCompatActivity {
+public class iCU_sent extends AppCompatActivity {
 
-    private static final String TAG = "iCU_uncompleted";
+    private static final String TAG = "iCU_sent";
 
     private RecyclerView recyclerView;
-    private RcvdChallengeAdapter adaptor;
-    private List<PassChallenges> rChallengeList;
+    private SentChallengeAdaptor adaptor;
+    private List<PassChallenges> sChallengeList;
     private ProgressBar progressBar;
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
@@ -34,9 +34,9 @@ public class iCU_uncompleted extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_i_c_u_uncompleted);
+        setContentView(R.layout.activity_i_c_u_sent);
 
-        rChallengeList = new ArrayList<>();
+        sChallengeList = new ArrayList<>();
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -44,15 +44,15 @@ public class iCU_uncompleted extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         user = fAuth.getCurrentUser();
 
-        recyclerView = (RecyclerView) findViewById(R.id.rcvdChallengesRV);
+        recyclerView = (RecyclerView) findViewById(R.id.sentChallengesRV);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adaptor = new RcvdChallengeAdapter(this, rChallengeList);
+        adaptor = new SentChallengeAdaptor(this, sChallengeList);
         recyclerView.setAdapter(adaptor);
 
 
-        db.collection("users").document(user.getUid()).collection("receivedChallenges").get()
+        db.collection("users").document(user.getUid()).collection("sentChallenges").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -64,7 +64,7 @@ public class iCU_uncompleted extends AppCompatActivity {
                             for (DocumentSnapshot d : list) {
                                 PassChallenges pc = d.toObject(PassChallenges.class);
                                 pc.setChallengeId(d.getId());
-                                rChallengeList.add(pc);
+                                sChallengeList.add(pc);
 
                             }
                             adaptor.notifyDataSetChanged();

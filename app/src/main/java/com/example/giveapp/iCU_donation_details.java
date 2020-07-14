@@ -29,9 +29,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.squareup.picasso.Picasso;
 
-public class rfo_donation_details extends AppCompatActivity {
+public class iCU_donation_details extends AppCompatActivity {
 
-    private static final String TAG = "rfo_donation_details";
+    private static final String TAG = "iCU_donation_details";
 
     TextView ben_name, desc;
     ImageView ben_logo;
@@ -45,10 +45,12 @@ public class rfo_donation_details extends AppCompatActivity {
 
     Dialog myDialog;
 
+    private PassChallenges rcvdChallenge;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rfo_donation_details);
+        setContentView(R.layout.activity_i_c_u_donation_details);
 
         db = FirebaseFirestore.getInstance();
         beneficiaries = db.collection("beneficiaries");
@@ -68,6 +70,11 @@ public class rfo_donation_details extends AppCompatActivity {
         }
         assert beneficiary != null;
         getDetail(beneficiary);
+
+        if(getIntent() != null) {
+            rcvdChallenge = (PassChallenges) getIntent().getSerializableExtra("rcvdChallenge");
+        }
+        assert rcvdChallenge != null;
 
     }
 
@@ -102,63 +109,20 @@ public class rfo_donation_details extends AppCompatActivity {
     }
 
     public void showPopUp(View v) {
-        myDialog = new Dialog(rfo_donation_details.this);
-        myDialog.setContentView(R.layout.rfo_popup);
+        myDialog = new Dialog(iCU_donation_details.this);
+        myDialog.setContentView(R.layout.icu_popup);
         TextView popuptext = myDialog.findViewById(R.id.popuptext);
-        final EditText enterAmt = myDialog.findViewById(R.id.enterAmt);
+        TextView tenCents = myDialog.findViewById(R.id.cfmText);
         Button cfmBtn = myDialog.findViewById(R.id.cfmBtn);
 
-        enterAmt.setEnabled(true);
         cfmBtn.setEnabled(true);
 
         cfmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                int amtEntered = Integer.parseInt(enterAmt.getText().toString()); // amount entered
-                SharedPreferences sharedPreferences = getSharedPreferences("countSP", MODE_PRIVATE);
-                int numSteps = sharedPreferences.getInt("count", 0);
-                int amtAvailToBeDonated = numSteps / 10;  // 10 to test, 10000 actual
-                int stepsUnavailForConvertion = numSteps % 10; // num steps that cant be converted // 10 to test, 10000 actual
-
-                if (amtEntered > amtAvailToBeDonated) {
-                    String errorMsg = "Please enter an amount less than or equal to $" + amtAvailToBeDonated;
-                    enterAmt.setError(errorMsg);
-                } else if (amtEntered <= 0) {
-                    String errorMsg = "Please enter a minimum of $1.";
-                    enterAmt.setError(errorMsg);
-                } else {
-                    int numStepsAftDonation = ((amtAvailToBeDonated - amtEntered) * 10) + stepsUnavailForConvertion; // 10 to test, 10000 actual
-
-                    SharedPreferences pref = getSharedPreferences("countSP", MODE_PRIVATE);
-                    pref.edit().putInt("count", numStepsAftDonation).apply();
-
-                    SharedPreferences sp = getSharedPreferences("benIDSP", MODE_PRIVATE);
-                    String benID = sp.getString("benID", "default");
-
-                    DocumentReference ben = db.collection("beneficiaries").document(benID);
-                    ben
-                            .update("userDonation", amtEntered)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "DocumentSnapshot successfully updated!");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error updating document", e);
-                                }
-                            });
-
-                    Toast.makeText(rfo_donation_details.this, "Donation Successful", Toast.LENGTH_SHORT).show();
-
-                    myDialog.dismiss();
-
-                    startActivity(new Intent(rfo_donation_details.this, rfo_stepcounter.class));
-                    finish();
-                }
+                Intent i = new Intent(iCU_donation_details.this, CreditCardList.class);
+                i.putExtra("rcvdChallenge", rcvdChallenge);
+                startActivity(i);
             }
         });
 

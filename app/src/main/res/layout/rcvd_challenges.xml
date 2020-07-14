@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="#B8C2CA"
+            android:padding="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/challengeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="ICE BUCKET CHALLENGE"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#FFFFFF"
+                android:textSize="27sp"
+                android:typeface="monospace"
+                app:fontFamily="@font/roboto_medium" />
+
+            <TextView
+                android:id="@+id/sentBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/challengeTitle"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                android:text="sent by: "
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textSize="20sp"
+                app:fontFamily="casual" />
+
+            <TextView
+                android:id="@+id/challengerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/challengeTitle"
+                android:layout_toRightOf="@id/sentBy"
+                android:layout_marginTop="7dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textSize="20sp"
+                app:fontFamily="casual"
+                android:text="Friend Name" />
+
+            <TextView
+                android:id="@+id/Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sentBy"
+                android:layout_marginTop="7dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textSize="15sp"
+                android:layout_marginLeft="5dp"
+                app:fontFamily="casual"
+                android:text="Status: " />
+
+            <TextView
+                android:id="@+id/currentStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sentBy"
+                android:layout_toRightOf="@id/Status"
+                android:layout_marginTop="7dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textSize="15sp"
+                app:fontFamily="casual"
+                android:text="Uncompleted" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

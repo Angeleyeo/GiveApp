@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="200dp"
+    android:padding="5dp"
+    android:layout_gravity="center">
+
+
+    <Button
+        android:id="@+id/rejectChallengeBtn"
+        android:layout_width="322dp"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#F1C0BD"
+        android:text="REJECT" />
+
+    <Button
+        android:id="@+id/acceptChallengeBtn"
+        android:layout_width="322dp"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="26dp"
+        android:gravity="center"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#BDDCBE"
+        android:text="ACCEPT" />
+
+</RelativeLayout>
