@@ -84,6 +84,9 @@ public class SentChallengeAdaptor extends RecyclerView.Adapter<SentChallengeAdap
             } else if (sentChallenge.getStatus().equals("Not Approved")) {
                 Toast.makeText(mCtx, "You did not approve the completion.", Toast.LENGTH_LONG).show();
                 intent = new Intent(mCtx, iCU_sent.class);
+            } else if (sentChallenge.getStatus().equals("Donated")) {
+                Toast.makeText(mCtx, "Your friend has donated.", Toast.LENGTH_LONG).show();
+                intent = new Intent(mCtx, iCU_sent.class);
             }
 
 
