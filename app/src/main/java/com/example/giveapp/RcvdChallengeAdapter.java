@@ -80,9 +80,13 @@ public class RcvdChallengeAdapter extends RecyclerView.Adapter<RcvdChallengeAdap
                 Toast.makeText(mCtx, "Please donate $0.10 to any beneficiary of choice.", Toast.LENGTH_LONG).show();
                 intent = new Intent(mCtx, iCU_donate.class);
             } else if (rcvdChallenge.getStatus().equals("Not Approved")) {
-            Toast.makeText(mCtx, "Your challenge completion was not approved, please donate $0.10 to any beneficiary of choice.", Toast.LENGTH_LONG).show();
-            intent = new Intent(mCtx, iCU_donate.class);
-        }
+                Toast.makeText(mCtx, "Your challenge completion was not approved, please donate $0.10 to any beneficiary of choice.", Toast.LENGTH_LONG).show();
+                intent = new Intent(mCtx, iCU_donate.class);
+            } else if (rcvdChallenge.getStatus().equals("Donated")) {
+                Toast.makeText(mCtx, "You have donated, challenge completed.", Toast.LENGTH_LONG).show();
+                intent = new Intent(mCtx, iCU_uncompleted.class);
+            }
+
             intent.putExtra("rcvdChallenge", rcvdChallenge);
             mCtx.startActivity(intent);
 
