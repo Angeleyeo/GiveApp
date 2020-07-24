@@ -1,8 +1,5 @@
 package com.example.giveapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,8 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.algolia.search.saas.Client;
 import com.algolia.search.saas.Index;
@@ -22,7 +23,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -36,6 +40,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 public class Profile extends AppCompatActivity {
 
     public static final String TAG = "TAG";
@@ -48,6 +54,9 @@ public class Profile extends AppCompatActivity {
     FirebaseUser user;
     StorageReference storageReference;
     Uri downloadUri = null;
+    String userID;
+    ImageButton backBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +74,26 @@ public class Profile extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         StorageReference profileRef = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+        /**profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).into(profileImageView);
                 downloadUri = uri;
+            }
+        });**/
+
+        userID = fAuth.getCurrentUser().getUid();
+        DocumentReference docRef = fStore.collection("users").document(userID);
+        docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if (documentSnapshot.exists()) {
+                    Picasso.get().load((String)documentSnapshot.get("imageUrl")).into(profileImageView);
+
+                } else {
+                    Log.d("tag", "On Event: Document does not exist.");
+                }
             }
         });
 
@@ -95,7 +119,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (profileName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() || downloadUri == null) {
+                if (profileName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() ) {
                     Toast.makeText(Profile.this, "One or Many Fields Are Empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -158,6 +182,14 @@ public class Profile extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
+
+        backBtn = findViewById(R.id.prevBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Profile.this, MainActivity.class));
+            }
+        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, @androidx.annotation.Nullable Intent data) {
@@ -179,7 +211,7 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(profileImageView);
-                        downloadUri =uri;
+                        downloadUri = uri;
                     }
                 });
             }

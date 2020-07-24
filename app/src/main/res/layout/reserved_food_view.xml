@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/foodName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/foodLogo"
+                android:fontFamily="@font/roboto_black"
+                android:gravity="center"
+                android:text="3 GARLIC NAANS"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/collection"
+                android:layout_width="195dp"
+                android:layout_height="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="80dp"
+                android:layout_toEndOf="@+id/foodLogo"
+                android:gravity="center"
+                android:text="Pending Collection..."
+                android:textColor="#C5C5C5"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/foodPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foodName"
+                android:layout_marginStart="97dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foodLogo"
+                android:hint="$$"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/foodLogo"
+                android:layout_width="141dp"
+                android:layout_height="127dp"
+                android:src="@drawable/prata_wala" />
+
+            <TextView
+                android:id="@+id/QtyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foodName"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foodPrice"
+                android:hint="QTY"
+                android:text="QTY : "
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/foodQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foodName"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foodPrice"
+                android:hint="QTY"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foodName"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foodLogo"
+                android:text="PRICE : "
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

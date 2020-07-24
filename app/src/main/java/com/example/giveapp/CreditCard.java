@@ -45,7 +45,7 @@ public class CreditCard extends AppCompatActivity {
 
         user = fAuth.getCurrentUser();
 
-        backBtn = findViewById(R.id.backBtn);
+        backBtn = findViewById(R.id.prevBtn);
 
         cardForm.setPayBtnClickListner(new OnPayBtnClickListner() {
             @Override

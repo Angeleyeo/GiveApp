@@ -10,22 +10,21 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/paymentToolbar"
         android:layout_width="0dp"
-        android:layout_height="66dp"
+        android:layout_height="60dp"
         android:background="#AFB8BF"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/cardDeetsWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Card Details"
         android:textColor="#FFFFFF"
-        android:textSize="28sp"
-        app:fontFamily="@font/roboto_black"
+        android:textSize="35sp"
+        app:fontFamily="@font/serenity_script"
         app:layout_constraintBottom_toBottomOf="@+id/paymentToolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
@@ -33,16 +32,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/backBtn"
+        android:id="@+id/prevBtn"
         android:layout_width="48dp"
         android:layout_height="39dp"
         android:background="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/paymentToolbar"
-        app:layout_constraintEnd_toStartOf="@+id/cardDeetsWord"
+        app:layout_constraintEnd_toStartOf="@+id/runforone"
         app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
+
+
 
     <com.craftman.cardform.CardForm
         android:id="@+id/card_form"

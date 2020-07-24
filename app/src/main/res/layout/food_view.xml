@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/foodName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/foodLogo"
+                android:fontFamily="@font/roboto_black"
+                android:gravity="center"
+                android:text="3 GARLIC NAANS"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                app:fontFamily="@font/comfortaa_bold" />
+
+            <TextView
+                android:id="@+id/foodPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foodName"
+                android:layout_marginStart="97dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foodLogo"
+                android:hint="$$"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/foodLogo"
+                android:layout_width="141dp"
+                android:layout_height="127dp"
+                android:src="@drawable/prata_wala" />
+
+            <TextView
+                android:id="@+id/QtyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foodName"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foodPrice"
+                android:fontFamily="@font/roboto"
+                android:hint="QTY"
+                android:text="QTY : "
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/foodQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foodName"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foodPrice"
+                android:hint="QTY"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foodName"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foodLogo"
+                android:fontFamily="@font/roboto"
+                android:text="PRICE : "
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

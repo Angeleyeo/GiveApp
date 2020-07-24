@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +30,8 @@ public class FriendRequests extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
     private FirebaseUser user;
+
+    ImageButton backBtn;
 
 
 
@@ -70,5 +75,13 @@ public class FriendRequests extends AppCompatActivity {
                         }
                     }
                 });
+
+        backBtn = findViewById(R.id.prevBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FriendRequests.this, MainActivity.class));
+            }
+        });
     }
 }

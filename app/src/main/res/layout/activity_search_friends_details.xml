@@ -7,6 +7,43 @@
     android:background="#D4D5DC"
     tools:context=".SearchFriends_details">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar4"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#AFB8BF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/otherUsersProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other Users Profile"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        app:fontFamily="@font/serenity_script"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/prevBtn"
+        android:layout_width="48dp"
+        android:layout_height="39dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
+        app:layout_constraintEnd_toStartOf="@+id/otherUsersProfile"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/otherUsersImage"
         android:layout_width="239dp"
@@ -57,20 +94,6 @@
         app:layout_constraintTop_toBottomOf="@+id/otherUsersName"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/otherUsersProfile"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="#B97E7E"
-        android:gravity="center"
-        android:text="Other User Profile"
-        android:textColor="#FFFFFF"
-        android:textSize="40sp"
-        app:fontFamily="@font/amatica_sc_bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:onClick="showPopUp"

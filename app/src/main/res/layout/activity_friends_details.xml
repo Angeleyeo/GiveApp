@@ -57,20 +57,41 @@
         app:layout_constraintTop_toBottomOf="@+id/myFriendsName"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/myFriendsProfile"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="#B97E7E"
-        android:gravity="center"
-        android:text="My Friend's Profile"
-        android:textColor="#FFFFFF"
-        android:textSize="40sp"
-        app:fontFamily="@font/amatica_sc_bold"
+        android:layout_height="60dp"
+        android:background="#AFB8BF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/profileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Friend's Profile"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        app:fontFamily="@font/serenity_script"
+        app:layout_constraintBottom_toBottomOf="@+id/myFriendsProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/prevBtn"
+        android:layout_width="48dp"
+        android:layout_height="39dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/myFriendsProfile"
+        app:layout_constraintEnd_toStartOf="@+id/runforone"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
 
     <TextView
         android:id="@+id/youAreFriends"

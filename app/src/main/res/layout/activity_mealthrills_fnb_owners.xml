@@ -7,60 +7,79 @@
     android:background="#B8C2CA"
     tools:context=".mealthrills_fnbOwners">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar4"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#AFB8BF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/mealthrills"
+        android:id="@+id/food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="meal thrills"
+        android:text="mealthrills"
         android:textColor="#FFFFFF"
-        android:textSize="53sp"
+        android:textSize="35sp"
         app:fontFamily="@font/serenity_script"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/prevBtn"
+        android:layout_width="48dp"
+        android:layout_height="39dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
+        app:layout_constraintEnd_toStartOf="@+id/food"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047" />
+        app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
+
 
     <Button
         android:id="@+id/addNewPostBtn"
         android:layout_width="350dp"
         android:layout_height="150dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_button"
+        android:backgroundTint="#98A0A6"
+        android:fontFamily="@font/roboto_medium"
         android:text="POST NEW FOOD ITEM"
-        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealthrills" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar4" />
 
     <Button
         android:id="@+id/itemsReservedBtn"
         android:layout_width="350dp"
         android:layout_height="150dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_button"
+        android:backgroundTint="#98A0A6"
+        android:fontFamily="@font/roboto_medium"
+
         android:text="ITEMS RESERVED BY USERS"
-        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addNewPostBtn" />
-
-    <Button
-        android:id="@+id/marketplace"
-        android:layout_width="350dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/rounded_button"
-        android:text="MARKETPLACE"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemsReservedBtn"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

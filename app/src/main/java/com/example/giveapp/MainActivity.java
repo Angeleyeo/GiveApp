@@ -1,20 +1,26 @@
 package com.example.giveapp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -28,11 +34,12 @@ import com.squareup.picasso.Picasso;
 
 import javax.annotation.Nullable;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
 
-    TextView fullName, email, verifyMsg, numFriends;
+    TextView fullName, email, verifyMsg;
+    private DrawerLayout drawer;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
@@ -47,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbarMain = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbarMain);
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        //rotate drawer icon
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbarMain,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
         icuBtn = findViewById(R.id.icuBtn);
         rfoBtn = findViewById(R.id.rfoBtn);
         mtBtn = findViewById(R.id.mealThrillsBtn);
@@ -58,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         editProfileBtn = findViewById(R.id.editProfileBtn);
         findFriends = findViewById(R.id.findFriendsIV);
         friendReqBtn = findViewById(R.id.requests);
-        numFriends = findViewById(R.id.textView10);
 
 
         fAuth = FirebaseAuth.getInstance();
@@ -109,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
                 if (documentSnapshot.exists()) {
                     email.setText(documentSnapshot.getString("email"));
                     fullName.setText(documentSnapshot.getString("fName"));
+                    Picasso.get().load((String)documentSnapshot.get("imageUrl")).into(profileImage);
+
                 } else {
                     Log.d("tag", "On Event: Document does not exist.");
                 }
@@ -153,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         mtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), mealthrills_fnbOwners.class);
+                Intent i = new Intent(v.getContext(), MealThrillsUser.class);
                 startActivity(i);
             }
         });
@@ -166,15 +185,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        numFriends.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Friends.class);
-                startActivity(i);
-            }
-        });
-
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.nav_message:
+                Intent notiIntent = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(notiIntent);
+                break;
+            case R.id.nav_settings:
+                Intent i = new Intent(this, Profile.class);
+                i.putExtra("Name", fullName.getText().toString());
+                i.putExtra("Email", email.getText().toString());
+                startActivity(i);
+                break;
+            case R.id.nav_friends:
+                Intent friendsIntent = new Intent(MainActivity.this, Friends.class);
+                startActivity(friendsIntent);
+                break;
+            case R.id.nav_friendRequests :
+                Intent requestIntent = new Intent(MainActivity.this, FriendRequests.class);
+                startActivity(requestIntent);
+                break;
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
 }

@@ -13,8 +13,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".CreditCardList"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".reservedFood"></activity>
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".foodDetails" />
+        <activity android:name=".userFoodMain" />
+        <activity android:name=".MealThrillsUser" />
+        <activity android:name=".mealthrills_fnb_post" />
+        <activity android:name=".CreditCardList" />
         <activity android:name=".iCU_donation_details" />
         <activity android:name=".CreditCard" />
         <activity android:name=".iCU_donate" />
@@ -26,7 +33,6 @@
         <activity android:name=".FriendRequests_details" />
         <activity android:name=".FriendRequests" />
         <activity android:name=".SearchFriends_details" />
-        <activity android:name=".mealthrills_fnb_post" />
         <activity android:name=".mealthrills_fnbOwners" />
         <activity android:name=".rfo_donation_details" />
         <activity android:name=".rfo_donate" />
@@ -49,7 +55,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".confirmCollection" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -7,12 +7,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -23,22 +27,31 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.app.PendingIntent.getActivity;
 
 public class mealthrills_fnb_post extends AppCompatActivity {
 
@@ -52,29 +65,27 @@ public class mealthrills_fnb_post extends AppCompatActivity {
     private EditText mItemDesc;
 
     private Button mListItBtn;
-
-    private Uri postImageUri;
+    ProgressBar progressBar;
 
     private StorageReference mStorage;
     private FirebaseFirestore mff;
     private FirebaseAuth mfa;
 
     private String current_uId;
-
-    private ProgressBar mProgressBar;
+    ImageButton prevButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mealthrills_fnb_post);
 
-        mProgressBar = findViewById(R.id.newPostProgressBar);
+        progressBar = findViewById(R.id.progressBar3);
 
         mStorage = FirebaseStorage.getInstance().getReference();
         mff = FirebaseFirestore.getInstance();
         mfa = FirebaseAuth.getInstance();
 
-        current_uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        current_uId = mfa.getCurrentUser().getUid();
 
         mSelectImage = findViewById(R.id.uploadFoodImg);
 
@@ -84,139 +95,121 @@ public class mealthrills_fnb_post extends AppCompatActivity {
         mItemDesc = findViewById(R.id.foodItemDesc);
         mListItBtn = findViewById(R.id.listItBtn);
 
+
         mSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // the following code is written by me to check for permission to read and write storage. ask user "can access media?"
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                    if (ContextCompat.checkSelfPermission(mealthrills_fnb_post.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-                        Toast.makeText(mealthrills_fnb_post.this, "Permission Denied", Toast.LENGTH_LONG).show();
-                        ActivityCompat.requestPermissions(mealthrills_fnb_post.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-
-                    }
-
-                    // code end
-
-                    else {
-
-                        CropImage.activity()
-                                .setGuidelines(CropImageView.Guidelines.ON)
-                                .setMinCropResultSize(512, 512)
-                                .setAspectRatio(1, 1)
-                                .start(mealthrills_fnb_post.this);
-
-                    }
-
-                }
+                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(openGalleryIntent, 1000);
             }
         });
+
+        prevButton = findViewById(R.id.prevBtn);
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), mealthrills_fnbOwners.class);
+                startActivity(i);
+            }
+        });
+
 
         mListItBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startPosting();
+                final String name = mItemName.getText().toString().trim();
+                final String qty = mItemQty.getText().toString().trim();
+                final String price = mItemPrice.getText().toString().trim();
+                final String desc = mItemDesc.getText().toString().trim();
+                FirebaseUser owner = FirebaseAuth.getInstance().getCurrentUser();
+                final String ownerID = owner.getUid();
 
+
+                if (TextUtils.isEmpty(name)) {
+                    mItemName.setError("Name is required.");
+                    return;
+                }
+                if (TextUtils.isEmpty(qty)) {
+                    mItemQty.setError("Quantity is required.");
+                    return;
+                }
+                if (TextUtils.isEmpty(price)) {
+                    mItemPrice.setError("Price is required.");
+                    return;
+                }
+                progressBar.setVisibility(View.VISIBLE);
+
+                Map<String, String> userMap = new HashMap<>();
+                userMap.put("foodName", name);
+                userMap.put("foodQty", qty);
+                userMap.put("foodPrice", price);
+                userMap.put("foodDesc", desc);
+                userMap.put("ownerID", ownerID);
+
+                mff.collection("food").add(userMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(mealthrills_fnb_post.this, "Food Added", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(mealthrills_fnb_post.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                mff.collection("food")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                                        Log.d(TAG, doc.getId() + " => " + doc.getData());
+                                    }
+                                }
+                                else {
+                                        Log.w(TAG, "Error getting documents.", task.getException());
+                                    }
+                                }
+                        });
             }
         });
 
     }
 
-    private void startPosting() {
-
-        final String name = mItemName.getText().toString().trim();
-        final String price = mItemPrice.getText().toString().trim();
-        final String qty = mItemQty.getText().toString().trim();
-        final String desc = mItemDesc.getText().toString().trim();
-
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(desc) && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(qty) && postImageUri != null) {
-
-            mProgressBar.setVisibility(View.VISIBLE);
-
-            String randomName = FieldValue.serverTimestamp().toString();
-
-            final StorageReference filePath = mStorage.child("FoodItem_Images").child(randomName + ".jpg");
-
-            filePath.putFile(postImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-
-                    if (task.isSuccessful()) {
-
-                        filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                final String imgUrl = uri.toString();
-
-                                SharedPreferences imgUrlSP = getSharedPreferences("imgUrlSP", MODE_PRIVATE);
-                                imgUrlSP.edit().putString("imgUrl", imgUrl).apply();
-
-                                Toast.makeText(getBaseContext(), "Upload success", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                        SharedPreferences imgUrlSP = getSharedPreferences("imgUrlSP", MODE_PRIVATE);
-                        String imgUrl = imgUrlSP.getString("imgUrl", "default");
-
-                        Map<String, Object> postMap = new HashMap<>();
-                        postMap.put("image_url", imgUrl);
-                        postMap.put("name", name);
-                        postMap.put("price", price);
-                        postMap.put("qty", qty);
-                        postMap.put("desc", desc);
-                        postMap.put("user_id", current_uId);
-                        postMap.put("timestamp", FieldValue.serverTimestamp());
-
-
-                        mff.collection("Foods").add(postMap)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                                        Toast.makeText(mealthrills_fnb_post.this, "Post was added", Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(mealthrills_fnb_post.this, mealthrills_fnbOwners.class));
-                                        finish();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(mealthrills_fnb_post.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        Log.w(TAG, "Error adding document", e);
-                                    }
-                                });
-
-                    } else {
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                    }
-
-                }
-            });
-
-        }
-
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1000) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri imageUri = data.getData();
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-
-                postImageUri = result.getUri();
-                mSelectImage.setImageURI(postImageUri);
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-
-                Exception error = result.getError();
-
+                uploadImageToFirebase(imageUri);
             }
         }
     }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        final StorageReference fileRef = mStorage.child("food/" + current_uId + "/foodLogo.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(mSelectImage);
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(mealthrills_fnb_post.this, "Failed.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

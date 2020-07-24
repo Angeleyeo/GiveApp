@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,6 +33,8 @@ public class iCU_sent extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
     private FirebaseUser user;
+
+    ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,14 @@ public class iCU_sent extends AppCompatActivity {
                         }
                     }
                 });
+
+        backBtn = findViewById(R.id.prevBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(iCU_sent.this, iCU_main.class));
+            }
+        });
     }
 
 }
