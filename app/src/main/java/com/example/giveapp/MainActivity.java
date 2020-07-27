@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             verifyMsg.setVisibility(View.VISIBLE);
             verifyBtn.setVisibility(View.VISIBLE);
 
-            verifyMsg.setOnClickListener(new View.OnClickListener() {
+            verifyBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
                     user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {

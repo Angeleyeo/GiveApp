@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,7 @@ public class CreditCardAdapter extends RecyclerView.Adapter<CreditCardAdapter.Pr
 
         TextView list_cardNum, last4digits, list_cardName;
         CircleImageView card_logo;
+        ImageButton backBtn;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);

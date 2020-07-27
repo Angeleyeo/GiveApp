@@ -4,9 +4,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +37,8 @@ public class Friends_details extends AppCompatActivity {
     String otherUsersId; // added
     FirebaseAuth fAuth; // added
 
+    ImageButton backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,14 @@ public class Friends_details extends AppCompatActivity {
         }
         assert user != null;
         getDetail(user);
+
+        backBtn = findViewById(R.id.prevBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Friends_details.this, SearchFriends.class));
+            }
+        });
     }
 
     // need to clean up - show users excluding current users

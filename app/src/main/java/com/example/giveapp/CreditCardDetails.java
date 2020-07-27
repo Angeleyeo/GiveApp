@@ -13,6 +13,7 @@ public class CreditCardDetails implements Serializable {
     private String logoUrl;
     private String id;
 
+
     public CreditCardDetails() {
 
     }

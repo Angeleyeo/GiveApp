@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ public class CreditCardList extends AppCompatActivity {
     private FirebaseAuth fAuth;
     private FirebaseUser user;
     PassChallenges rcvdChallenge;
+    ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,14 @@ public class CreditCardList extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(CreditCardList.this, CreditCard.class);
                 startActivity(i);
+            }
+        });
+
+        backBtn = findViewById(R.id.prevBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CreditCardList.this, iCU_uncompleted_details.class));
             }
         });
     }
